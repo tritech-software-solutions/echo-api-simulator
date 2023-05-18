@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "rimraf dist/ && tsc && copyfiles -u 1 src/assets/** dist && node dist/app.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,7 +15,9 @@
     "@types/express": "^4.17.1",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.39.0",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {

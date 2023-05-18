@@ -1,5 +1,6 @@
 type Parameter = {
     name: string;
-    required: boolean;
+    required: boolean | null;
     value: string;
+    type: string | null;
 }

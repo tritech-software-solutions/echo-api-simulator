@@ -1,12 +1,13 @@
+import GlobalConfigHandler from './GlobalConfigHandler';
+import InterfaceHandler from './InterfaceHandler';
 import RequestHandler from './RequestHandler';
 
+const globalConfigPath: string = `././gconfig.json`;
+const globalConfig = new GlobalConfigHandler(globalConfigPath);
+globalConfig.retrieveGlobalConfig();
 
-const port: number = 3001;
-const dirLocation: string = "./.testconfigs/"
-const baseRoute: string = `/echoAPI/v1/`
-const urlPrefix: string = `https://api-nba-v1.p.rapidapi.com/`
+const test: RequestHandler = new RequestHandler(globalConfig);
+const testInterface: InterfaceHandler = new InterfaceHandler(globalConfig);
 
-const test: RequestHandler = new RequestHandler(port, baseRoute, dirLocation, urlPrefix);
-
-test.runRequest();
+testInterface.runRequest();
 

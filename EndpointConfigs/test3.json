@@ -1,0 +1,45 @@
+{
+    "/people": {
+        "status": 200,
+        "parameters": [
+            {
+                "name": "gold",
+                "required": true,
+                "value": 7,
+                "type": "number"
+            }
+        ],
+        "headers": [
+            {
+                "name": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+            },
+            {
+                "name": "Content-Type",
+                "value": "application/json"
+            },
+            {
+                "name": "User-Agent",
+                "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+            }
+        ],
+        "body": {    
+            "GET": {
+                "data": [
+                    {
+                        "id": 2,
+                        "name": "Frank",
+                        "email": "frank@example.com",
+                        "phone": "+1-555-555-5555",
+                        "address": {
+                            "street": "246 Park Ave",
+                            "city": "Bigtown",
+                            "state": "IL",
+                            "zip": "97531"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Select Box Control</title>
+    </head>
+
+    <body>
+        <p>
+            <label for="endpoint">Endpoint: </label>
+            <input id="endpoint" type="text" name="endpoint" value="" />
+            <br />
+            <label for="status">Status Code: </label>
+            <input id="status" type="number" name="status" value="200" />
+            <br />
+            <label for="response">Response: </label>
+            <input id="response" type="text" name="response" value="" />
+            <br />
+        </p>
+        <p>
+            <div><b>Parameters</b></div>
+            <button onclick="addParameter()">Add Parameter</button>
+            <div id="parameterContainer"></div>
+        </p>
+
+        <button onclick="submit()">Submit</button>
+    </body>
+
+    <script>
+        let paramContainer = document.getElementById("parameterContainer");
+        let parameterCount = 0;
+        function addParameter() {
+            paramContainer.innerHTML += `
+                        <label for="param${parameterCount}_name">Name: </label>
+                        <input id="param${parameterCount}_name" type="text" name="param${parameterCount}_name" value="" />
+                        <label for="param${parameterCount}_required">Required: </label>
+                        <input id="param${parameterCount}_required" type="checkbox" name="param${parameterCount}_required" value="" />
+                        <label for="param${parameterCount}_value">Value: </label>
+                        <input id="param${parameterCount}_value" type="text" name="param${parameterCount}_value" value="" />
+                        <br />
+                    `;
+            parameterCount++;
+        }
+
+        function submit() {
+            let paramValues = [];
+
+            for (let i = 0; i < parameterCount; i++) {
+                paramValues.push({
+                    name: document.getElementById(`param${i}_name`).value,
+                    required: document.getElementById(`param${i}_required`).checked,
+                    value: document.getElementById(`param${i}_value`).value,
+                });
+            }
+
+            fetch(window.location.origin + "/add_endpoint", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    endpoint: document.getElementById("endpoint").value,
+                    status: document.getElementById("status").value,
+                    parameters: paramValues,
+                    response: document.getElementById("response").value,
+                }),
+            })
+                .then((response) => response.json())
+                .then((response) => console.log(JSON.stringify(response)));
+        }
+    </script>
+</html>

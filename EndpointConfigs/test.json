@@ -1,53 +1,18 @@
-# chameleon-api-simulator
-
-## Config Files
-
-### Global
-  **File Name:** gconfig.json
-
-  **Contents:** 
-- Directory location of the Enpoint Config file
-- Api host port
-- Local host endpoint prefix
-
-  **Example**
-  ```json
-  {
-    "apiport": <port: number>,
-    "endpoint": {
-        "configpath": <file path: string>,
-        "echobaseroute": <url prefix: string>
-    }
-  }
-  ```
-### Endpoint
-  **File Name:** {configpath}\\{anything}.json
-
-  **Contents:** 
-  - Endpoint
-    - Status
-    - Headers
-      - Name
-      - Value
-    - Parmeters
-      - Name
-      - Value
-      - Type
-      - Required?
-    - Body
-      - HTTP Request Type
-  
-  **Example**
-  ```json
-  {
+{
     "/people": {
         "status": 200,
         "parameters": [
             {
                 "name": "color",
                 "required": true,
-                "value": "blue",
+                "value": "red",
                 "type": "string"
+            },
+            {
+                "name": "size",
+                "required": false,
+                "value": 3,
+                "type": "number"
             }
         ],
         "headers": [
@@ -66,6 +31,46 @@
         ],
         "body": {    
             "GET": {
+                "data": [
+                    {
+                        "id": 1,
+                        "name": "Alice",
+                        "email": "alice@example.com",
+                        "phone": "+1-555-555-5555",
+                        "address": {
+                            "street": "123 Main St",
+                            "city": "Anytown",
+                            "state": "CA",
+                            "zip": "12345"
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "name": "Bob",
+                        "email": "bob@example.com",
+                        "phone": "+1-555-555-5555",
+                        "address": {
+                            "street": "456 Elm St",
+                            "city": "Otherville",
+                            "state": "NY",
+                            "zip": "67890"
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "name": "Charlie",
+                        "email": "charlie@example.com",
+                        "phone": "+1-555-555-5555",
+                        "address": {
+                            "street": "789 Oak St",
+                            "city": "Smallville",
+                            "state": "TX",
+                            "zip": "54321"
+                        }
+                    }
+                ]
+            },
+            "POST": {
                 "data": [
                     {
                         "id": 1,
@@ -108,19 +113,3 @@
         }
     }
 }
-
-  ```
-  
-## Usage
-
-### Install
-
-```bash
-npm install
-```
-
-### Run
-
-```bash
-npm start
-```
